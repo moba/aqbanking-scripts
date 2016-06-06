@@ -6,11 +6,11 @@ This is a script that we use to generate statistics over monthly CSVs exported f
 
 You need this once to initialize aqbanking. It requires manual editing where you at least edit USER to contain your user account name at GLS (VRK000....).
 
-Aqbanking stores its accounts in ~/.aqbanking.
+Aqbanking stores its data in ~/.aqbanking.
 
 ## fetch.sh
 
-This fetches data via HBCI using aqbanking. It needs to know which month you're interested in and does not do any sophistication checking whatsoever.
+This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to know which month you're interested in and does not do any sophisticated checking whatsoever.
 
     ./fetch.sh 201604
 
