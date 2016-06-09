@@ -29,10 +29,7 @@ except:
     exit(2)
 
 # prepare dictionary for transactions
-class TransactionsCounter(dict):
-    def __missing__(self, key):
-        return 0
-transactions = TransactionsCounter()
+transactions = {}
 
 reader = csv.DictReader(csvfile, delimiter=';')
 for row in reader:
