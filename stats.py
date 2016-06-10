@@ -9,9 +9,9 @@
 #  licensed under MIT
 
 import csv
-from datetime import date, datetime
-from collections import OrderedDict
-from sys import argv
+from datetime    import date,        datetime
+from collections import OrderedDict, Counter
+from sys         import argv
 
 DATE_FIELD = "date"
 DATE_FORMAT = "%Y/%m/%d"
@@ -28,24 +28,23 @@ except:
     print argv[0] + ' transactions.csv'
     exit(2)
 
-# prepare dictionary for transactions
-transactions = {}
+# prepare counter for transactions
+amount_counter = Counter();
 
 reader = csv.DictReader(csvfile, delimiter=';')
 for row in reader:
     amount = float(row[AMOUNT_FIELD].replace('/100',''))/100
+    amount_counter[amount] += 1
+    ## only amount used here; rest for demonstration purposes
+    #    date = datetime.strptime(row[DATE_FIELD], DATE_FORMAT).date()
+    #    purpose = row[PURPOSE_FIELD]
 
-## only amount used here; rest for demonstration purposes
-#    date = datetime.strptime(row[DATE_FIELD], DATE_FORMAT).date()
-#    purpose = row[PURPOSE_FIELD]
-
-    transactions[amount] = transactions[amount]+1
-
-transactions = OrderedDict(sorted(transactions.items())) # sort chronologically
+# sort by amount
+amount_counter = OrderedDict(sorted(amount_counter.items()))
 
 total = 0
-for amount in transactions:
-    count = transactions[amount]
+for amount in amount_counter:
+    count = amount_counter[amount]
     total = total + (count * amount)
     print "{:<10} | {:<3} |".format(amount , count)
 
