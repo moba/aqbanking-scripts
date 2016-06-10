@@ -44,10 +44,12 @@ for row in reader:
 amount_counter = OrderedDict(sorted(amount_counter.items()))
 
 # Print all amounts and their count
+# (And sum up total balance during this)
 total = 0
 for amount in amount_counter:
     count = amount_counter[amount]
     total = total + (count * amount)
+
     print "{:<10} | {:<3} |".format(amount , count)
 
 # Print total balance of this csv file
