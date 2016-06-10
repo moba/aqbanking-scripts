@@ -28,9 +28,10 @@ except:
     print argv[0] + ' transactions.csv'
     exit(2)
 
-# prepare counter for transactions
+# prepare counter for amounts
 amount_counter = Counter();
 
+# Read-in csv file and count amounts
 reader = csv.DictReader(csvfile, delimiter=';')
 for row in reader:
     amount = float(row[AMOUNT_FIELD].replace('/100',''))/100
@@ -39,14 +40,15 @@ for row in reader:
     #    date = datetime.strptime(row[DATE_FIELD], DATE_FORMAT).date()
     #    purpose = row[PURPOSE_FIELD]
 
-# sort by amount
+# sort the counter-entries by amount
 amount_counter = OrderedDict(sorted(amount_counter.items()))
 
+# Print all amounts and their count
 total = 0
 for amount in amount_counter:
     count = amount_counter[amount]
     total = total + (count * amount)
     print "{:<10} | {:<3} |".format(amount , count)
 
-print ""
-print "Total: " + str(total)
+# Print total balance of this csv file
+print "\nTotal: " + str(total)
