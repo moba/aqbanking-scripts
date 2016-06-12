@@ -9,9 +9,8 @@ using ArgParse
 cli_args = ArgParseSettings()
 @add_arg_table cli_args begin
     "input_csv_file"
-        help = "The transactions csv file to extract the spendings from"
-        required = true
-        arg_type = UTF8String
+        help    = "The transactions csv file to extract the spendings from"
+        default = "demo.csv"
 end
 parsed_args = parse_args(cli_args)
 
