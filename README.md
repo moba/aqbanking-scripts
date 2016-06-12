@@ -60,6 +60,32 @@ Total: 139.13
 
 ```
 
+## list-spendings.jl
+
+First, you need to install julia
+```
+apt install julia
+```
+
+Then you can run the script, the first run will take some time (~1 min)
+because julia will compile several base libraries and install some dependencies.
+
+I recommend running the script via `include()` in the interactive julia shell
+because this way you get beautifull pretty-printing of the tables at the end.
+This is done by:
+
+```
+> julia
+julia> include("list-spendings.jl")
+
+2×3 DataFrames.DataFrame
+│ Row │ purpose                                                                              │ remoteName      │ value_value │
+├─────┼──────────────────────────────────────────────────────────────────────────────────────┼─────────────────┼─────────────┤
+│ 1   │ "Abrechnung vom 29.04.2016"                                                          │ ""              │ -2.0        │
+│ 2   │ "16 VK: 21422139323 gruenstrom easy60 PG24/16 VK: 2421912332 gruenstrom easy60 PG24" │ "Mahlzahn GmbH" │ -232.0      │
+
+```
+
 ## Licensed under CC0
 
 Do whatever you want with it.
