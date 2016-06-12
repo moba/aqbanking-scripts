@@ -101,7 +101,7 @@ the `include()` function. Therefore the name of the input-csv-file had to be har
 ```
 demo.csv
 ```
-
+Which means you have to name your input-csv-file `demo.csv` to get read by list-spendings.jl.
 
 ## Licensed under CC0
 
