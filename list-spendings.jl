@@ -12,6 +12,7 @@ relevant_subset = full_csv[[:purpose, :remoteName, :value_value]]
 amounts = @data([])
 for i in relevant_subset[:value_value]
     cur_amount = convert(Float64 ,eval(parse(i)))
+    # Jep, we're directly evaluating user input here, YOLO
     push!(amounts, cur_amount)
 end
 relevant_subset[:value_value] = amounts
