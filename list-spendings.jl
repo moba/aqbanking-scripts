@@ -1,5 +1,8 @@
 #!/usr/bin/env julia
 
+Pkg.add("DataFrames")
+Pkg.add("ArgParse")
+
 using DataFrames
 using ArgParse
 
