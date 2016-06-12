@@ -1,9 +1,19 @@
 #!/usr/bin/env julia
 
 using DataFrames
+using ArgParse
+
+cli_args = ArgParseSettings()
+@add_arg_table cli_args begin
+    "input_csv_file"
+        help = "The transactions csv file to extract the spendings from"
+        required = true
+        arg_type = UTF8String
+end
+parsed_args = parse_args(cli_args)
 
 # read in the csv file into a DataFrame data-structure
-full_csv = readtable("demo.csv", separator=';')
+full_csv = readtable(parsed_args["input_csv_file"], separator=';')
 
 # only keep the relevant coloumns
 relevant_subset = full_csv[[:purpose, :remoteName, :value_value]]
@@ -25,4 +35,4 @@ sort!(relevant_subset, cols = [:value_value], rev = true)
 
 # Print result (The DataFrames package automagically does
 # pretty printing of DataFrames (i.e. Tables) :) )
-println(relevant_subset)
+print(relevant_subset)
