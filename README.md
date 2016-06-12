@@ -16,10 +16,10 @@ This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to
 
 => produces `data/transactions-201604.csv` and `data/transactions-201604.ctx` (aqbanking db)
 
-## stats.py
+## count_amounts.py
 
 ```
-❯ ./stats.py data/transactions-201604.csv         ✚ ✭
+❯ ./count_amounts.py data/transactions-201604.csv         ✚ ✭
 -1969.84   | 1   |     
 -1400.0    | 1   |
 -1000.0    | 1   |
@@ -41,7 +41,7 @@ This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to
 
 Total: -696.39
 
-❯ ./stats.py data/transactions-201605.csv         ✚ ✭
+❯ ./count_amounts.py data/transactions-201605.csv         ✚ ✭
 -1400.0    | 1   |
 -232.0     | 1   |
 -2.0       | 1   |
