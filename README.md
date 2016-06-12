@@ -75,7 +75,17 @@ because this way you get beautifull pretty-printing of the tables at the end.
 This is done by:
 
 ```
-> julia
+$ julia
+               _
+   _       _ _(_)_     |  A fresh approach to technical computing
+  (_)     | (_) (_)    |  Documentation: http://docs.julialang.org
+   _ _   _| |_  __ _   |  Type "?help" for help.
+  | | | | | | |/ _` |  |
+  | | |_| | | | (_| |  |  Version 0.4.5 (2016-03-18 00:58 UTC)
+ _/ |\__'_|_|_|\__'_|  |  
+|__/                   |  x86_64-linux-gnu
+
+
 julia> include("list-spendings.jl")
 
 2×3 DataFrames.DataFrame
@@ -85,6 +95,13 @@ julia> include("list-spendings.jl")
 │ 2   │ "16 VK: 21422139323 gruenstrom easy60 PG24/16 VK: 2421912332 gruenstrom easy60 PG24" │ "Mahlzahn GmbH" │ -232.0      │
 
 ```
+
+The disadvantage of the *"repl-include"* approach lies in the fact that it's not possible to supply cli-arguments via
+the `include()` function. Therefore the name of the input-csv-file had to be hardcoded and is currently set to
+```
+demo.csv
+```
+
 
 ## Licensed under CC0
 
