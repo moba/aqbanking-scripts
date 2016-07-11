@@ -23,7 +23,7 @@ PURPOSE_FIELD= "purpose"
 # parse command line
 try:
     csv_filename = argv[1]
-    csvfile = open(csv_filename, 'rb')
+    csvfile = open(csv_filename, 'r')
 except:
     print argv[0] + ' transactions.csv'
     exit(2)
