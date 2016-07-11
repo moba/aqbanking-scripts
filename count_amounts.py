@@ -49,12 +49,21 @@ print ""
 # Print all amounts and their count
 # (And sum up total balance during this)
 total = 0
+income = 0
+expenses = 0
 for amount in amount_counter:
     count     = amount_counter[amount]
-    ascii_bar = " " + (count * "#")
-    total     = total + (count * amount)
-
+    ascii_bar = " " + count * "#"
+    value     = count * amount
+    total     = total + value
+    if value > 0:
+        income = income + value
+    else:
+        expenses = expenses - value
     print "{:<10} | {:<3} |".format(amount , count) + ascii_bar
 
 # Print total balance of this csv file
-print "\nTotal: " + str(total)
+print ""
+print "Income:   " + str(income)
+print "Expenses: " + str(expenses)
+print "Total:    " + str(total)
