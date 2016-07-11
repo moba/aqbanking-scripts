@@ -9,6 +9,8 @@
 #  licensed under MIT
 
 import csv
+import os.path
+import calendar
 from datetime    import date,        datetime
 from collections import OrderedDict, Counter
 from sys         import argv
@@ -33,9 +35,13 @@ amount_counter = Counter();
 
 # Read-in csv file and count amounts
 reader = csv.DictReader(csvfile, delimiter=';')
+month = ""
+year = ""
 for row in reader:
     amount = float(row[AMOUNT_FIELD].replace('/100',''))/100
     amount_counter[amount] += 1
+    month = datetime.strptime(row[DATE_FIELD], DATE_FORMAT).date().month
+    year = datetime.strptime(row[DATE_FIELD], DATE_FORMAT).date().year
     ## only amount used here; rest for demonstration purposes
     #    date = datetime.strptime(row[DATE_FIELD], DATE_FORMAT).date()
     #    purpose = row[PURPOSE_FIELD]
@@ -67,3 +73,13 @@ print ""
 print "Income:   " + str(income)
 print "Expenses: " + str(expenses)
 print "Total:    " + str(total)
+
+# Create tsv file
+tsv_filename = os.path.splitext(csv_filename)[0] + '.tsv'
+with open(tsv_filename, 'w') as tsvfile:
+    writer = csv.writer(tsvfile, delimiter='\t')
+    writer.writerow(['type', 'year', 'month', 'value', 'color'])
+    writer.writerow(['Ausgaben', year, calendar.month_name[month], str(expenses), 'red'])
+    writer.writerow(['Einnahmen', year, calendar.month_name[month], str(income), 'green'])
+print ""
+print tsv_filename + " created successfully"
