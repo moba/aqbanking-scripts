@@ -8,12 +8,14 @@
 #  hacked together by Moritz Bartl
 #  licensed under MIT
 
+from __future__ import print_function
 import csv
 import os.path
 import calendar
 from datetime    import date,        datetime
 from collections import OrderedDict, Counter
 from sys         import argv
+import sys
 
 DATE_FIELD = "date"
 DATE_FORMAT = "%Y/%m/%d"
@@ -27,7 +29,7 @@ try:
     csv_filename = argv[1]
     csvfile = open(csv_filename, 'r')
 except:
-    print argv[0] + ' transactions.csv'
+    print(argv[0] + ' transactions.csv')
     exit(2)
 
 # prepare counter for amounts
@@ -49,9 +51,6 @@ for row in reader:
 # sort the counter-entries by amount
 amount_counter = OrderedDict(sorted(amount_counter.items()))
 
-# Print one newline before output for beauty
-print ""
-
 # Print all amounts and their count
 # (And sum up total balance during this)
 total = 0
@@ -66,13 +65,12 @@ for amount in amount_counter:
         income = income + value
     else:
         expenses = expenses - value
-    print "{:<10} | {:<3} |".format(amount , count) + ascii_bar
+    print("{:<10} | {:<3} |".format(amount , count) + ascii_bar)
 
 # Print total balance of this csv file
-print ""
-print "Income:   " + str(income)
-print "Expenses: " + str(expenses)
-print "Total:    " + str(total)
+print("Income:   " + str(income))
+print("Expenses: " + str(expenses))
+print("Total:    " + str(total))
 
 # Create tsv file
 tsv_filename = os.path.splitext(csv_filename)[0] + '.tsv'
@@ -81,5 +79,4 @@ with open(tsv_filename, 'w') as tsvfile:
     writer.writerow(['type', 'year', 'month', 'value', 'color'])
     writer.writerow(['Ausgaben', year, calendar.month_name[month], str(expenses), 'red'])
     writer.writerow(['Einnahmen', year, calendar.month_name[month], str(income), 'green'])
-print ""
-print tsv_filename + " created successfully"
+print(tsv_filename + " created successfully", file=sys.stderr)
