@@ -1,5 +1,6 @@
 #!/bin/sh
 USER=VRK000xxxxxxx
+set -e
 BLZ=43060967
 ACCOUNTNAME="openlab"
 
