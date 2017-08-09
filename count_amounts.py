@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # account-stats.py
 #  reads a CSV file from bank and prints out some statistics
 #  of the transactions

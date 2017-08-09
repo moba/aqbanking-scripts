@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ACCOUNT="8205793100"    # bank account number
 OUTPUTDIR="./data"
