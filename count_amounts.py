@@ -24,13 +24,20 @@ PURPOSE_FIELD= "purpose"
 
 ###########################################################
 
+def usage():
+    print(argv[0] + ' [table|tsv] transactions.csv')
+    exit(2)
+
 # parse command line
 try:
-    csv_filename = argv[1]
+    mode = argv[1]
+    csv_filename = argv[2]
     csvfile = open(csv_filename, 'r')
 except:
-    print(argv[0] + ' transactions.csv')
-    exit(2)
+    usage()
+
+if not mode in ["table", "tsv"]:
+    usage()
 
 # prepare counter for amounts
 amount_counter = Counter();
@@ -56,6 +63,8 @@ amount_counter = OrderedDict(sorted(amount_counter.items()))
 total = 0
 income = 0
 expenses = 0
+
+amountcount = []
 for amount in amount_counter:
     count     = amount_counter[amount]
     ascii_bar = " " + count * "#"
@@ -65,18 +74,22 @@ for amount in amount_counter:
         income = income + value
     else:
         expenses = expenses - value
-    print("{:<10} | {:<3} |".format(amount , count) + ascii_bar)
+    amountcount.append((amount, count))
 
-# Print total balance of this csv file
-print("Income:   " + str(income))
-print("Expenses: " + str(expenses))
-print("Total:    " + str(total))
+if mode == "table":
+    for (amount, count) in amountcount:
+        print("{:<10} | {:<3} |".format(amount , count) + ascii_bar)
+    # Print total balance of this csv file
+    print("Income:   " + str(income))
+    print("Expenses: " + str(expenses))
+    print("Total:    " + str(total))
 
-# Create tsv file
-tsv_filename = os.path.splitext(csv_filename)[0] + '.tsv'
-with open(tsv_filename, 'w') as tsvfile:
-    writer = csv.writer(tsvfile, delimiter='\t')
+elif mode == "tsv":
+    writer = csv.writer(sys.stdout, delimiter='\t')
     writer.writerow(['type', 'year', 'month', 'value', 'color'])
     writer.writerow(['Ausgaben', year, calendar.month_name[month], str(expenses), 'red'])
     writer.writerow(['Einnahmen', year, calendar.month_name[month], str(income), 'green'])
-print(tsv_filename + " created successfully", file=sys.stderr)
+
+else:
+    print("this should not be reached", file=sys.stderr)
+    exit(2)
