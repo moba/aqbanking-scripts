@@ -16,14 +16,14 @@ MERGED=$(mktemp -t aqbanking-merge.XXXXXXX)
 trap 'shred -u "$NEW_CTX" "$NEW_CSV"' EXIT
 
 # create empty DESTINATION if it doesn't exist
-[ ! -f "$DESTINATION" ] && touch $DESTINATION
+[ ! -f "$DESTINATION" ] && touch "$DESTINATION"
 
 ##### MAIN: FETCH, EXPORT TO CSV, MERGE USING DIFF
 
-aqbanking-cli -n -P $PINFILE request --transactions -c $NEW_CTX -a $ACCOUNT --fromdate=$DATE_FROM
-aqbanking-cli export -c $NEW_CTX --exporter=csv --profile=full -o $NEW_CSV
+aqbanking-cli -n -P "$PINFILE" request --transactions -c "$NEW_CTX" -a $ACCOUNT --fromdate="$DATE_FROM"
+aqbanking-cli export -c "$NEW_CTX" --exporter=csv --profile=full -o "$NEW_CSV"
 
-diff --line-format='%L' $DESTINATION $NEW_CSV > $MERGED
+diff --line-format='%L' "$DESTINATION" "$NEW_CSV" > "$MERGED"
 
-mv $DESTINATION $DESTINATION.$(date +%Y%m%d)
-mv $MERGED $DESTINATION
+mv "$DESTINATION" "$DESTINATION.$(date +%Y%m%d)"
+mv "$MERGED" "$DESTINATION"
