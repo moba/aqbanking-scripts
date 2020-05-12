@@ -1,4 +1,7 @@
 #!/bin/sh
+
+## TODO: NEEDS FIXING; does not work that way any more. check aqbanking notes
+
 set -e
 USER=VRK1495266731666348
 BLZ=43060967
