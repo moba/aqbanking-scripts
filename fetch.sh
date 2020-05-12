@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e -o pipefail
 
 ACCOUNT="8205793100"    # bank account number
 OUTPUTDIR="./data-openlab"
