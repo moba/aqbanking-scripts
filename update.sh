@@ -25,5 +25,5 @@ aqbanking-cli export -c "$NEW_CTX" --exporter=csv --profile=full -o "$NEW_CSV"
 
 diff --line-format='%L' "$DESTINATION" "$NEW_CSV" > "$MERGED"
 
-mv "$DESTINATION" "$DESTINATION.$(date +%Y%m%d)"
+mv --backup=numbered "$DESTINATION" "$DESTINATION.$(date +%Y%m%d)"
 mv "$MERGED" "$DESTINATION"
