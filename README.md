@@ -1,8 +1,9 @@
-# bank-transaction-stats.py
-
-This is a script that we use to generate statistics over monthly CSVs exported from a bank account at a German GLS bank via HBCI (aqbanking).
-
 ## setup.py
+
+*The setup script is currently broken. Every bank requires a custom setup.* 
+
+ * https://www.aquamaniac.de/rdm/projects/aqbanking/wiki/AqBanking6_Bankentabelle
+ * https://www.aquamaniac.de/rdm/projects/aqbanking/wiki/SetupPinTan
 
 You need this once to initialize aqbanking. It requires manual editing where you at least edit USER to contain your user account name at GLS (VRK000....).
 
@@ -15,6 +16,10 @@ This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to
     ./fetch.sh 201604
 
 => produces `data/transactions-201604.csv` and `data/transactions-201604.ctx` (aqbanking db)
+
+## update.sh
+
+`update.sh` is work in progress to fetch updates and intelligently merge new transactions to a continously complete CSV export. It is meant to be run periodically, e.g. via cron. At this point it is a demo, and you will likely  want to test it and customize to your own needs. 
 
 ## count_amounts.py
 

@@ -2,6 +2,7 @@
 
 # PSD2: allowed to grab max 90 days without 2FA
 DATE_FROM=$(date -d "-89 days" +%Y%m%d)
+DATE_FROM=$(date -d "-1 month" +%Y%m%d)
 
 ACCOUNT="1126825606"    # testing with riseup account
 
