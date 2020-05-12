@@ -9,6 +9,10 @@ You need this once to initialize aqbanking. It requires manual editing where you
 
 Aqbanking stores its data in ~/.aqbanking.
 
+## update.sh
+
+`update.sh` is work in progress to fetch updates and intelligently merge new transactions to a continuously complete CSV export. It is meant to be run periodically, e.g. via cron. At this point it is a demo, and you will likely  want to test it and customize to your own needs.
+
 ## fetch.sh
 
 This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to know which month you're interested in and does not do any sophisticated checking whatsoever.
@@ -16,10 +20,6 @@ This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to
     ./fetch.sh 201604
 
 => produces `data/transactions-201604.csv` and `data/transactions-201604.ctx` (aqbanking db)
-
-## update.sh
-
-`update.sh` is work in progress to fetch updates and intelligently merge new transactions to a continously complete CSV export. It is meant to be run periodically, e.g. via cron. At this point it is a demo, and you will likely  want to test it and customize to your own needs. 
 
 ## count_amounts.py
 
