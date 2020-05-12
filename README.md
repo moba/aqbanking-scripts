@@ -1,4 +1,4 @@
-## setup.py
+## setup.sh
 
 *The setup script is currently broken. Every bank requires a custom setup.* 
 
@@ -22,6 +22,8 @@ This fetches data via HBCI using aqbanking and puts it into `data/`. It needs to
 => produces `data/transactions-201604.csv` and `data/transactions-201604.ctx` (aqbanking db)
 
 ## count_amounts.py
+
+This should probably be moved to https://github.com/moba/bank-transaction-stats .
 
 ```
 ❯ ./count_amounts.py data/transactions-201604.csv         ✚ ✭
